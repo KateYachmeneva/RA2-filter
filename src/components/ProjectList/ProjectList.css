@@ -1,0 +1,16 @@
+.ProjectList {
+    position: relative;
+    display: flex;
+    max-height: 200vh;
+  
+    flex-direction: column;
+    flex-wrap:wrap;
+  
+    align-items: center;
+  }
+  
+  .ProjectList .ProjectList-Project-Container {
+    padding:10px;
+    position: relative;
+    flex: 1 1 30%;
+  }
