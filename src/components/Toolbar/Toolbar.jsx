@@ -1,23 +1,29 @@
 import React from 'react';
 import './Toolbar.css';
-class Toolbar extends React.Component {
-    onSelectFilter = (filter) => {
-        this.props.onSelectFilter(filter)
-    }
+import PropTypes from 'prop-types';
 
-
-    render(){
-           const filters = this.props.filters.map(filter => (
-            <div
-            className = {this.props.selected === filter ? "Toolbar-Filter-active" : "Toolbar-Filter"}
-            key = {filter}
-            id = {filter}
-            onClick = {this.onSelectFilter}>
-                {filter}
-            </div>
-        ));
-        return (<div className = "Toolbar">{filters}</div>)
-    }
-
-}
+   
+const Toolbar = (props) => {
+   if (props.filters.length === 0) {
+          return <p>Данные потерялись...</p>
+        }
+   return(
+       <div className = "Toolbar">
+         {props.filters.map(filter => 
+          <div
+          className = {props.selected === filter ? "Toolbar-Filter-active" : "Toolbar-Filter"}
+          key = {filter}
+          id = {filter}
+          onClick = {props.onSelectFilter}>
+              {filter}
+          </div>)
+        }
+        </div>
+      )      
+     }
+Toolbar.propTypes = {
+    filters: PropTypes.array.isRequired,
+    selected: PropTypes.string.isRequired,
+    onSelectFilter: PropTypes.func.isRequired
+  }
 export default Toolbar;

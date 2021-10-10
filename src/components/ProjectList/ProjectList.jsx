@@ -1,18 +1,27 @@
 import React from 'react';
 import './ProjectList.css';
-class Toolbar extends React.Component {
+import PropTypes from 'prop-types';
+
    
-
-    render(){
-        const projects = this.props.projects.map(project => (
-            <div
-            className = "ProjectList-Project-Container"
-            key = {`${project.id}-Container`}>
-                <img src={project.img} className="ProjectList-Project" alt={project.category} key={project.id}/>
-            </div>
-        ));
-        return (<div className = "ProjectList">{projects}</div>) 
+const ProjectList = (props) => {
+    if (props.projects.length === 0) {
+        return <p>К сожалению тут пусто...</p>
+      }
+    return(
+       <div className = "ProjectList">
+         { props.projects.map(project => 
+          <div
+          className = "ProjectList-Project-Container"
+          key = {`${project.id}-Container`}>
+         <img src={project.img} className="ProjectList-Project" alt={project.category} key={project.id}
+         />
+          </div>)
     }
-
+       </div>
+  )      
 }
-export default Toolbar;
+
+ProjectList.propTypes = {
+    projects: PropTypes.array.isRequired,
+  }
+export default ProjectList;
